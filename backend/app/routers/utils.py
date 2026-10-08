@@ -20,6 +20,9 @@ def http_error_email_exists(): http_error(400, "El email ya existe")
 
 def http_error_incorrect_credentials(): http_error(401, "Credenciales incorrectas")
 
+def http_error_review_found(): http_error(400, "Ya has publicado una reseña en esta película")
+def http_error_review_not_found(): http_error(404, "Reseña no encontrada")
+
 
 
 def query_find_user_by_username(db, username):
@@ -35,6 +38,11 @@ def query_find_email(db, email):
 def query_find_movie_by_id(db, movie_id):
     return db.query(models.Movie).filter(
                 models.Movie.id == movie_id
+            ).first()
+    
+def query_find_review_by_id(db, review_id):
+    return db.query(models.Review).filter(
+                models.Review.id == review_id
             ).first()
 
 
