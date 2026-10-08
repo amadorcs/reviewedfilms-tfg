@@ -15,6 +15,8 @@ def http_error_user_not_found(): http_error(401, "Usuario no encontrado")
 def http_error_user_not_admin(): http_error(403, "El usuario no es administrador")
 
 def http_error_movie_not_found(): http_error(404, "Película no encontrada")
+def http_error_movie_is_favorite(): http_error(400, "La película ya está en favoritos")
+def http_error_movie_is_not_favorite(): http_error(404, "La película no está en favoritos")
 
 def http_error_email_exists(): http_error(400, "El email ya existe")
 
