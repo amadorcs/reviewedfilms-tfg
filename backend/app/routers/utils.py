@@ -14,6 +14,8 @@ def http_error_user_exists(): http_error(400, "El nombre de usuario ya existe")
 def http_error_user_not_found(): http_error(401, "Usuario no encontrado")
 def http_error_user_not_admin(): http_error(403, "El usuario no es administrador")
 
+def http_error_movie_not_found(): http_error(404, "Película no encontrada")
+
 def http_error_email_exists(): http_error(400, "El email ya existe")
 
 def http_error_incorrect_credentials(): http_error(401, "Credenciales incorrectas")
@@ -29,6 +31,12 @@ def query_find_email(db, email):
     return db.query(models.User).filter(
                 models.User.email == email
             ).first()
+    
+def query_find_movie_by_id(db, movie_id):
+    return db.query(models.Movie).filter(
+                models.Movie.id == movie_id
+            ).first()
+
 
     
 def post_behaviour(db, item):
