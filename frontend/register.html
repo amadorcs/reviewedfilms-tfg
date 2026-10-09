@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Registro - ReviewedFilms</title>
+
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/register.css">
+</head>
+
+<body>
+    <header class="header">
+
+        <div class="logo"><a href="index.html">ReviewedFilms</a></div>
+
+        <nav class="nav">
+            <a href="login.html">Iniciar sesión</a>
+        </nav>
+    </header>
+
+    <main class="auth-container">
+        <form class="auth-card" onsubmit="registerUser(event)">
+
+            <h1>Crear cuenta</h1>
+
+            <label for="username">Usuario</label>
+            <input
+                type="text"
+                id="username"
+                placeholder="Nombre del usuario"
+                required
+            >
+
+            <label for="email">Email</label>
+            <input
+                type="email"
+                id="email"
+                placeholder="usuario@email.com"
+                required
+            >
+
+            <label for="password">Contraseña</label>
+            <input
+                type="password"
+                id="password"
+                placeholder="Contraseña del usuario"
+                required
+            >
+
+            <button type="submit">Registrarse</button>
+
+            <p>
+                ¿Ya tienes cuenta?
+                <a href="login.html">Inicia sesión</a>
+            </p>
+
+        </form>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-links">
+            <a href="index.html">Inicio</a>
+            <a href="films.html">Películas</a>
+        </div>
+
+        <p>ReviewedFilms - TFG - 2026</p>
+    </footer>
+
+</body>
+
+</html>

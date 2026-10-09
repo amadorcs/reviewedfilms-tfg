@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Administración - ReviewedFilms</title>
+
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+
+<body>
+    <header class="header">
+        <div class="logo">
+            <a href="index.html">ReviewedFilms</a>
+        </div>
+
+        <nav class="nav" id="nav-auth"></nav>
+    </header>
+
+    <main class="container">
+        <section class="admin-header">
+            <h1>Panel de administración</h1>
+            <p>Creación y edición de películas</p>
+        </section>
+
+        <section class="movie-form-section">
+            <h2>Añadir película</h2>
+
+            <form id="movie-form">
+
+                <label for="title">Título</label>
+                <input
+                    type="text"
+                    id="title"
+                    required
+                >
+
+                <label for="year">Año</label>
+                <input
+                    type="number"
+                    id="year"
+                    required
+                >
+
+                <label for="duration">Duración en minutos</label>
+                <input
+                    type="number"
+                    id="duration"
+                    required
+                >
+
+                <label for="genre">Género</label>
+                <select id="genre" required>
+                    <option value="">Selecciona un género</option>
+                    <option value="Acción">Acción</option>
+                    <option value="Aventuras">Aventuras</option>
+                    <option value="Animación">Animación</option>
+                    <option value="Ciencia ficción">Ciencia ficción</option>
+                    <option value="Comedia">Comedia</option>
+                    <option value="Documental">Documental</option>
+                    <option value="Drama">Drama</option>
+                    <option value="Fantasía">Fantasía</option>
+                    <option value="Terror">Terror</option>
+                    <option value="Thriller">Thriller</option>
+                </select>
+
+
+                <label for="synopsis">Sinopsis</label>
+                <textarea id="synopsis" rows="6" required></textarea>
+
+                <label for="poster-url">URL del póster</label>
+                <input type="text" id="poster-url">
+
+                <button type="submit">Añadir película</button>
+
+            </form>
+
+        </section>
+
+
+        <section class="movie-form-section" id="edit-movie-section" hidden>
+            <h2>Editar película</h2>
+
+            <form id="edit-movie-form">
+                <input type="hidden" id="edit-movie-id">
+
+                <label for="edit-title">Título</label>
+                <input type="text" id="edit-title" required>
+
+                <label for="edit-year">Año</label>
+                <input type="number" id="edit-year" required>
+
+                <label for="edit-duration">Duración en minutos</label>
+                <input type="number" id="edit-duration" required>
+
+                <label for="edit-genre">Género</label>
+                <select id="edit-genre" required>
+                    <option value="">Selecciona un género</option>
+                    <option value="Acción">Acción</option>
+                    <option value="Aventuras">Aventuras</option>
+                    <option value="Animación">Animación</option>
+                    <option value="Ciencia ficción">Ciencia ficción</option>
+                    <option value="Comedia">Comedia</option>
+                    <option value="Documental">Documental</option>
+                    <option value="Drama">Drama</option>
+                    <option value="Fantasía">Fantasía</option>
+                    <option value="Terror">Terror</option>
+                    <option value="Thriller">Thriller</option>
+                </select>
+
+                <label for="edit-synopsis">Sinopsis</label>
+                <textarea id="edit-synopsis" rows="6" required></textarea>
+
+                <label for="edit-poster-url">URL del póster</label>
+                <input type="text" id="edit-poster-url">
+
+                <button type="submit">Guardar cambios</button>
+                <button type="button" id="cancel-edit-button">Cancelar</button>
+            </form>
+
+        </section>
+
+
+        <section class="admin-movies">
+            <h2>Películas existentes</h2>
+
+            <div id="admin-movies-container">
+                <p>Cargando películas...</p>
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <footer class="footer">
+        <p>ReviewedFilms - TFG - 2026</p>
+    </footer>
+
+</body>
+
+</html>

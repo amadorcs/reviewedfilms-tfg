@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Films - ReviewedFilms</title>
+
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/index.css">
+</head>
+
+<body>
+    <header class="header">
+        <div class="logo"><a href="index.html">ReviewedFilms</a></div>
+
+        <nav class="nav" id="nav-auth"></nav>
+    </header>
+
+    <main class="container">
+        <h1>Films</h1>
+
+        <section class="films-tools">
+
+            <input
+                class="search"
+                id="search-input"
+                type="text"
+                placeholder="Buscar película..."
+            >
+
+            <select class="genre-filter" id="genre-filter">
+                <option value="">Todos los géneros</option>
+                <option value="Acción">Acción</option>
+                <option value="Aventuras">Aventuras</option>
+                <option value="Animación">Animación</option>
+                <option value="Ciencia ficción">Ciencia ficción</option>
+                <option value="Comedia">Comedia</option>
+                <option value="Documental">Documental</option>
+                <option value="Drama">Drama</option>
+                <option value="Fantasía">Fantasía</option>
+                <option value="Terror">Terror</option>
+                <option value="Thriller">Thriller</option>
+            </select>
+
+            <select class="sort-filter" id="sort-filter">
+                <option value="">Ordenar por</option>
+                <option value="rating-desc">Mejor valoradas</option>
+                <option value="reviews-desc">Más reseñadas</option>
+                <option value="year-desc">Más recientes</option>
+                <option value="year-asc">Más antiguas</option>
+                <option value="title-asc">Título A-Z</option>
+                <option value="title-desc">Título Z-A</option>
+            </select>
+        </section>
+
+
+        <section class="movie-grid" id="movie-grid">
+            <p>Cargando películas...</p>
+        </section>
+    </main>
+
+    <footer class="footer">
+
+        <div class="footer-links">
+            <a href="index.html">Inicio</a>
+            <a href="films.html">Films</a>
+            <a href="favorites.html">Favoritos</a>
+        </div>
+
+        <p>ReviewedFilms - TFG - 2026</p>
+
+    </footer>
+
+</body>
+
+</html>

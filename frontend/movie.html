@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Película - ReviewedFilms</title>
+
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/movie.css">
+</head>
+
+<body>
+    <header class="header">
+        <div class="logo"><a href="index.html">ReviewedFilms</a></div>
+        <nav class="nav" id="nav-auth"></nav>
+    </header>
+
+    <main class="container">
+        <section class="movie-detail">
+            <div class="movie-poster">
+                <img
+                    id="movie-poster"
+                    src=""
+                    alt="Póster de la película"
+                >
+            </div>
+
+            <div class="movie-info">
+                <h1 id="movie-title">Cargando...</h1>
+
+                <p class="movie-meta" id="movie-meta">Cargando información...</p>
+
+                <div class="movie-rating-summary">
+                    <span class="movie-rating-stars" id="movie-rating-stars">
+                        ☆☆☆☆☆
+                    </span>
+
+                    <span class="movie-rating-average" id="movie-rating-average">
+                        0.0
+                    </span>
+
+                    <span class="movie-review-count" id="movie-review-count">
+                        0 reseñas
+                    </span>
+                </div>
+
+                <button
+                    id="favorite-button"
+                    class="favorite-button"
+                    type="button"
+                    title="Añadir a favoritos"
+                >
+                    ♡
+                </button>
+
+                <h2>Sinopsis</h2>
+                <p class="synopsis" id="movie-synopsis"> Cargando sinopsis...</p>
+            </div>
+        </section>
+
+        <section class="my-review-section">
+            <div id="my-review-container" class="my-review-container"></div>
+
+            <div class="review-form" id="review-form-section">
+                <form id="review-form" onsubmit="submitReview(event)">
+
+                    <h2 id="review-form-title">Escribe una reseña</h2>
+
+                    <label for="rating">Puntuación</label>
+                    <select id="rating" required>
+                        <option value="1">1 estrella</option>
+                        <option value="2">2 estrellas</option>
+                        <option value="3">3 estrellas</option>
+                        <option value="4">4 estrellas</option>
+                        <option value="5">5 estrellas</option>
+                    </select>
+
+                    <label for="review-text">Reseña</label>
+                    <textarea
+                        id="review-text"
+                        rows="10"
+                        placeholder="Escribe tu reseña..."
+                        required
+                    ></textarea>
+
+                    <div class="review-form-actions">
+                        <button
+                            id="submit-review-button"
+                            class="submit-review-button"
+                            type="submit"
+                        >
+                            Publicar reseña
+                        </button>
+
+                        <button
+                            id="cancel-edit-button"
+                            class="cancel-review-button"
+                            type="button"
+                            onclick="cancelEditMyReview()"
+                        >
+                            Cancelar
+                        </button>
+                    </div>
+                </form>
+
+            </div>
+
+        </section>
+
+
+        <section class="reviews-section">
+            <h2>Reseñas de otros usuarios</h2>
+
+            <div id="reviews-container"><p>Cargando reseñas...</p></div>
+        </section>
+
+    </main>
+
+
+    <footer class="footer">
+        <div class="footer-links">
+            <a href="index.html">Inicio</a>
+            <a href="films.html">Films</a>
+            <a href="favorites.html">Favoritos</a>
+        </div>
+
+        <p>ReviewedFilms - TFG - 2026</p>
+    </footer>
+</body>
+
+</html>
