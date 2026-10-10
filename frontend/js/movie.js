@@ -180,15 +180,24 @@ function showMyReview() {
             </span>
         </div>
 
+        # -----------------------------------------
+        //VULNERABILIDAD: El contenido de la reseña es insertado directamente mediante innerHTML.
         <p class="my-review-text"> ${currentUserReview.comment} </p>
+        # -----------------------------------------
 
         <p class="review-date"> ${formatReviewDate(currentUserReview.creation_date)} </p>
 
         <div class="my-review-actions">
-            <button class="edit-review-button" onclick="editMyReview()"> Editar </button>
-            <button class="delete-review-button" onclick="deleteMyReview()"> Eliminar </button>
+            <button class="edit-review-button" type="button">Editar</button>
+            <button class="delete-review-button" type="button">Eliminar</button>
         </div>
     `;
+
+    article.querySelector(".edit-review-button")
+    .addEventListener("click", editMyReview);
+
+    article.querySelector(".delete-review-button")
+    .addEventListener("click", deleteMyReview);
 
     myReviewContainer.appendChild(article);
 }
@@ -259,6 +268,9 @@ async function loadReviews() {
 
         article.innerHTML = `
             <div class="review-header">
+                
+            # -----------------------------------------
+                //VULNERABILIDAD: username y comment son insertados directamente mediante innerHTML.
                 <strong> ${review.username} </strong>
 
                 <span>
@@ -268,6 +280,8 @@ async function loadReviews() {
             </div>
 
             <p> ${review.comment} </p>
+
+            # -----------------------------------------
 
             <p class="review-date"> ${formatReviewDate(review.creation_date)} </p>
         `;
@@ -390,4 +404,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     document.getElementById("favorite-button").addEventListener( "click", toggleFavorite );
 
     document.getElementById("cancel-edit-button").style.display = "none";
+
+    document.getElementById("review-form").addEventListener("submit", submitReview);
+    document.getElementById("cancel-edit-button").addEventListener("click", cancelEditMyReview);
 });

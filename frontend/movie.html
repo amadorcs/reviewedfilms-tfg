@@ -64,7 +64,7 @@
             <div id="my-review-container" class="my-review-container"></div>
 
             <div class="review-form" id="review-form-section">
-                <form id="review-form" onsubmit="submitReview(event)">
+                <form id="review-form">
 
                     <h2 id="review-form-title">Escribe una reseña</h2>
 
@@ -98,7 +98,6 @@
                             id="cancel-edit-button"
                             class="cancel-review-button"
                             type="button"
-                            onclick="cancelEditMyReview()"
                         >
                             Cancelar
                         </button>
@@ -128,6 +127,10 @@
 
         <p>ReviewedFilms - TFG - 2026</p>
     </footer>
+
+    <script src="js/api.js"></script>
+    <script src="js/nav.js"></script>
+    <script type="module" src="js/movie.js"></script>
 </body>
 
 </html>

@@ -1,6 +1,6 @@
 from fastapi import Depends, APIRouter
 
-from sqlalchemy import func
+from sqlalchemy import func, text
 from sqlalchemy.orm import Session
 
 from app import models, schemas
@@ -46,6 +46,41 @@ def movie_to_response(
         "review_count": review_count
     }
 
+
+@router.get("/search", response_model=list[schemas.MovieGet])
+def search_movies(
+    title: str,
+    db: Session = Depends(get_db)
+):
+    '''Busca películas por título'''
+    
+    # -----------------------------------------
+    #VULNERABILIDAD: 'title' es concatenado directamente en la consulta de SQL.
+    query = text(f"""SELECT id FROM movies 
+                WHERE title ILIKE '%{title}%'""")
+    # -----------------------------------------
+
+    result = db.execute(query).fetchall()
+
+    movie_ids = [row[0] for row in result]
+    if not movie_ids: return []
+
+    movies = db.query(models.Movie
+        ).filter(models.Movie.id.in_(movie_ids)
+        ).all()
+
+    return [movie_to_response(movie, db) for movie in movies]
+
+@router.get("/{movie_id}", response_model=schemas.MovieGet)
+def get_movie(
+    movie_id: int,
+    db: Session = Depends(get_db)
+):
+    '''Obtiene la película especificada'''
+    movie = query_find_movie_by_id(db, movie_id)
+    if movie is None: http_error_movie_not_found()
+
+    return movie_to_response(movie, db)
 
 @router.get("", response_model=list[schemas.MovieGet])
 def get_movies(

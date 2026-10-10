@@ -95,8 +95,12 @@ def update_review(
     current_user: models.User = Depends(get_current_user)
 ):
     '''Actualiza la reseña especificada'''
+    
+    # -----------------------------------------
+    # VULNERABILIDAD: No es comprobado que la reseña que se está actualizando pertenece al usuario que quiere modificarla.
     review = query_find_review_by_id(db, review_id)
     if review is None: http_error_review_not_found()
+    # -----------------------------------------
 
     review.rating = review_data.rating
     review.comment = review_data.comment
@@ -113,8 +117,11 @@ def delete_review(
     current_user: models.User = Depends(get_current_user)
 ):
     '''Borra la reseña especificada'''
+    # -----------------------------------------
+    # VULNERABILIDAD: No es comprobado que la reseña que se está actualizando pertenece al usuario que quiere modificarla.
     review = query_find_review_by_id(db, review_id)
     if review is None: http_error_review_not_found()
+    # -----------------------------------------
 
     delete_behaviour(db, review)
 
