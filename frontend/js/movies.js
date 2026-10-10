@@ -1,3 +1,5 @@
+import { getAuthToken } from "./utils.js";
+
 let allMovies = [];
 let favoriteMovieIds = new Set();
 
@@ -122,8 +124,8 @@ async function toggleFavorite(movieId) {
     /**
      * Añade o elimina una película de favoritos.
      */
-    const token = localStorage.getItem("access_token");
-    if (!token) { window.location.href = "login.html"; return; }
+    const token = getAuthToken();
+    if (!token) return;
 
     const isFavorite = favoriteMovieIds.has(movieId);
     const method = isFavorite ? "DELETE" : "POST";

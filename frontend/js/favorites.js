@@ -1,11 +1,12 @@
+import { getAuthToken } from "./utils.js";
+
 async function loadFavorites() {
     /**
      * Carga la sección de favoritos.
      */
 
-    const token = localStorage.getItem("access_token");
-
-    if (!token) { window.location.href = "login.html"; return; }
+    const token = getAuthToken()
+    if (!token) return;
 
     const container = document.getElementById("favorites-grid");
 
@@ -85,7 +86,8 @@ async function removeFavorite(movieId) {
     /**
      * Elimina una película de favoritos.
      */
-    const token = localStorage.getItem("access_token");
+    const token = getAuthToken()
+    if (!token) return;
 
     const response = await fetch(`${API_URL}/favorites/${movieId}`, {
         method: "DELETE",

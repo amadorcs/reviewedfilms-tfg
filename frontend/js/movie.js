@@ -1,3 +1,5 @@
+import { formatReviewDate, getAuthToken } from "./utils.js";
+
 const params = new URLSearchParams(window.location.search);
 const movieId = params.get("id");
 
@@ -5,20 +7,6 @@ let isFavorite = false;
 let currentUser = null;
 let currentUserReview = null;
 let isEditingReview = false;
-
-
-function formatReviewDate(dateString) {
-    /**
-     * Maquilla la fecha de una reseña
-     */
-    const date = new Date(dateString);
-
-    return date.toLocaleDateString("es-ES", {
-        day: "2-digit",
-        month: "2-digit",
-        year: "numeric"
-    });
-}
 
 
 async function loadMovie() {
@@ -73,7 +61,6 @@ async function loadFavoriteStatus() {
      * Comprueba si la película actual es favorita.
      */
     const token = localStorage.getItem("access_token");
-
     if (!token) {
         isFavorite = false;
         updateFavoriteButton();
@@ -117,10 +104,9 @@ async function toggleFavorite() {
     /**
      * Añade o elimina la película de favoritos.
      */
-    const token = localStorage.getItem("access_token");
+    const token = getAuthToken();
     if (!token) {
         alert("Debes iniciar sesión");
-        window.location.href = "login.html";
         return;
     }
 
@@ -310,10 +296,9 @@ async function createReview() {
 
     const comment = document.getElementById("review-text").value;
 
-    const token = localStorage.getItem("access_token");
+    const token = getAuthToken();
     if (!token) {
         alert("Debes iniciar sesión");
-        window.location.href = "login.html";
         return;
     }
 
