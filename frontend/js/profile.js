@@ -67,11 +67,11 @@ function renderProfileReviews() {
                     ${"☆".repeat(5 - review.rating)}
                 </p>
 
-                # -----------------------------------------
-                # VULNERABILIDAD: El contenido de la reseña es insertado directamente mediante innerHTML
+                <!-- ----------------------------------------- -->
+                <!-- VULNERABILIDAD: El contenido de la reseña es insertado directamente mediante innerHTML --> 
                 <p class="review-text"> ${review.comment} </p>
-                # -----------------------------------------
-                
+                <!-- ----------------------------------------- -->
+
                 <p class="review-date"> ${formatReviewDate(review.creation_date)} </p>
             </div>
 

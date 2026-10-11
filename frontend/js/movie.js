@@ -180,10 +180,10 @@ function showMyReview() {
             </span>
         </div>
 
-        # -----------------------------------------
-        //VULNERABILIDAD: El contenido de la reseña es insertado directamente mediante innerHTML.
+        <!-- ----------------------------------------- -->
+        <!-- VULNERABILIDAD: El contenido de la reseña es insertado directamente mediante innerHTML. -->
         <p class="my-review-text"> ${currentUserReview.comment} </p>
-        # -----------------------------------------
+        <!-- ----------------------------------------- -->
 
         <p class="review-date"> ${formatReviewDate(currentUserReview.creation_date)} </p>
 
@@ -269,8 +269,8 @@ async function loadReviews() {
         article.innerHTML = `
             <div class="review-header">
                 
-            # -----------------------------------------
-                //VULNERABILIDAD: username y comment son insertados directamente mediante innerHTML.
+            <!-- ----------------------------------------- -->
+                <!-- VULNERABILIDAD: username y comment son insertados directamente mediante innerHTML. -->
                 <strong> ${review.username} </strong>
 
                 <span>
@@ -281,7 +281,7 @@ async function loadReviews() {
 
             <p> ${review.comment} </p>
 
-            # -----------------------------------------
+            <!-- ----------------------------------------- -->
 
             <p class="review-date"> ${formatReviewDate(review.creation_date)} </p>
         `;
