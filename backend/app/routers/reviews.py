@@ -1,4 +1,4 @@
-from fastapi import Depends, APIRouter
+from fastapi import Depends, APIRouter, HTTPException
 
 from sqlalchemy.orm import Session
 
@@ -96,10 +96,17 @@ def update_review(
 ):
     '''Actualiza la reseña especificada'''
     
-    # -----------------------------------------
-    # VULNERABILIDAD: No es comprobado que la reseña que se está actualizando pertenece al usuario que quiere modificarla.
+    
     review = query_find_review_by_id(db, review_id)
     if review is None: http_error_review_not_found()
+    
+    # -----------------------------------------
+    # MITIGACIÓN: Se comprueba que la review pertenece al usuario que la está intentando modificar.
+    if review.user_id != current_user.id:
+        raise HTTPException(
+            status_code=403,
+            detail="Permiso denegado para modificar esta reseña"
+        )
     # -----------------------------------------
 
     review.rating = review_data.rating
@@ -117,10 +124,17 @@ def delete_review(
     current_user: models.User = Depends(get_current_user)
 ):
     '''Borra la reseña especificada'''
-    # -----------------------------------------
-    # VULNERABILIDAD: No es comprobado que la reseña que se está actualizando pertenece al usuario que quiere modificarla.
+    
     review = query_find_review_by_id(db, review_id)
     if review is None: http_error_review_not_found()
+    
+    # -----------------------------------------
+    # MITIGACIÓN: Se comprueba que la review pertenece al usuario que la está intentando eliminar.
+    if review.user_id != current_user.id:
+        raise HTTPException(
+            status_code=403,
+            detail="Permiso denegado para eliminar esta reseña"
+        )
     # -----------------------------------------
 
     delete_behaviour(db, review)
