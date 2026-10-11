@@ -58,21 +58,19 @@ function renderProfileReviews() {
 
         article.classList.add("profile-review-card");
 
+        //---------------------------------------
         article.innerHTML = `
             <div class="profile-review-info">
-                <h3>${review.movie_title}</h3>
+                <h3 class="profile-movie-title"></h3>
 
                 <p class="rating">
                     ${"★".repeat(review.rating)}
                     ${"☆".repeat(5 - review.rating)}
                 </p>
 
-                <!-- ----------------------------------------- -->
-                <!-- VULNERABILIDAD: El contenido de la reseña es insertado directamente mediante innerHTML --> 
-                <p class="review-text"> ${review.comment} </p>
-                <!-- ----------------------------------------- -->
+                <p class="review-text"></p>
 
-                <p class="review-date"> ${formatReviewDate(review.creation_date)} </p>
+                <p class="review-date">${formatReviewDate(review.creation_date)}</p>
             </div>
 
             <div class="profile-review-actions">
@@ -80,6 +78,11 @@ function renderProfileReviews() {
                 <button class="delete-button" type="button"> Eliminar </button>
             </div>
         `;
+
+        // MITIGACIÓN: El texto introducido por el usuario no se interpreta como código HTML, sino literalmente como texto.
+        article.querySelector(".profile-movie-title").textContent = review.movie_title;
+        article.querySelector(".review-text").textContent = review.comment;
+        //---------------------------------------
 
         article.querySelector(".edit-button").addEventListener("click",() => startEditReview(review.id));
         article.querySelector(".delete-button").addEventListener("click",() => deleteReview(review.id));

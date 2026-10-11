@@ -170,6 +170,7 @@ function showMyReview() {
     const article = document.createElement("article");
     article.classList.add("my-review-card");
 
+    //---------------------------------------
     article.innerHTML = `
         <h2>Tu reseña</h2>
 
@@ -180,18 +181,19 @@ function showMyReview() {
             </span>
         </div>
 
-        <!-- ----------------------------------------- -->
-        <!-- VULNERABILIDAD: El contenido de la reseña es insertado directamente mediante innerHTML. -->
-        <p class="my-review-text"> ${currentUserReview.comment} </p>
-        <!-- ----------------------------------------- -->
+        <p class="my-review-text"></p>
 
-        <p class="review-date"> ${formatReviewDate(currentUserReview.creation_date)} </p>
+        <p class="review-date">${formatReviewDate(currentUserReview.creation_date)}</p>
 
         <div class="my-review-actions">
             <button class="edit-review-button" type="button">Editar</button>
             <button class="delete-review-button" type="button">Eliminar</button>
         </div>
     `;
+    // MITIGACIÓN: El texto introducido por el usuario no se interpreta como código HTML, sino literalmente como texto.
+    article.querySelector(".my-review-text").textContent = currentUserReview.comment;
+    //---------------------------------------
+
 
     article.querySelector(".edit-review-button")
     .addEventListener("click", editMyReview);
@@ -266,12 +268,10 @@ async function loadReviews() {
         const article = document.createElement("article");
         article.classList.add("review");
 
+        //----------------------------------------------
         article.innerHTML = `
             <div class="review-header">
-                
-            <!-- ----------------------------------------- -->
-                <!-- VULNERABILIDAD: username y comment son insertados directamente mediante innerHTML. -->
-                <strong> ${review.username} </strong>
+                <strong class="review-username"></strong>
 
                 <span>
                     ${"★".repeat(review.rating)}
@@ -279,12 +279,15 @@ async function loadReviews() {
                 </span>
             </div>
 
-            <p> ${review.comment} </p>
+            <p class="review-comment"></p>
 
-            <!-- ----------------------------------------- -->
-
-            <p class="review-date"> ${formatReviewDate(review.creation_date)} </p>
+            <p class="review-date"> ${formatReviewDate(review.creation_date)}</p>
         `;
+
+        // MITIGACIÓN: El texto introducido por el usuario no se interpreta como código HTML, sino literalmente como texto.
+        article.querySelector(".review-username").textContent = review.username;
+        article.querySelector(".review-comment").textContent = review.comment;
+        //----------------------------------------------
 
         container.appendChild(article);
     });
